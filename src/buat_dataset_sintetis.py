@@ -15,8 +15,8 @@ import csv
 import cv2
 import numpy as np
 
-SEED = 1014          # 4 digit terakhir NIM
-N_PER_KELAS = 20     # 20 citra x 3 kelas = 60 citra
+SEED = 1014         
+N_PER_KELAS = 20     
 H, W = 480, 640
 KELAS = ["sehat", "ringan", "berat"]
 KONDISI = ["normal", "gelap", "terang", "kontras_rendah", "bayangan"]
@@ -64,10 +64,10 @@ def gambar_bercak(img, mask_daun, mask_bercak, kelas):
         pusat = (int(xs[i]), int(ys[i]))
         warna = [int(rng.integers(70, 100)), int(rng.integers(165, 190)),
                  int(rng.integers(185, 210))]  # BGR pucat
-        cv2.circle(img, pusat, r + 2, (40, 80, 110), -1)   # tepi cokelat
+        cv2.circle(img, pusat, r + 2, (40, 80, 110), -1)  
         cv2.circle(img, pusat, r, warna, -1)
         cv2.circle(mask_bercak, pusat, r + 2, 255, -1)
-    mask_bercak &= mask_daun                                # bercak hanya di daun
+    mask_bercak &= mask_daun                             
 
 
 def ganggu_cahaya(img, kondisi):
@@ -80,10 +80,10 @@ def ganggu_cahaya(img, kondisi):
     elif kondisi == "kontras_rendah":
         f = 0.35 * f + 95
     elif kondisi == "bayangan":
-        gx = np.linspace(1.15, 0.30, W, dtype=np.float32)   # separuh teduh
+        gx = np.linspace(1.15, 0.30, W, dtype=np.float32)   
         f = f * gx[None, :, None]
     sigma = float(rng.uniform(6, 14))
-    f = f + rng.normal(0, sigma, f.shape)                   # derau sensor
+    f = f + rng.normal(0, sigma, f.shape)                   
     return np.clip(f, 0, 255).astype(np.uint8)
 
 
@@ -96,7 +96,7 @@ def main():
         for j in range(N_PER_KELAS):
             nomor += 1
             latar = np.array([rng.integers(150, 190), rng.integers(170, 205),
-                              rng.integers(185, 215)])      # nampan anyaman
+                              rng.integers(185, 215)])      
             img = np.ones((H, W, 3), np.uint8) * latar.astype(np.uint8)
             img = cv2.add(img, rng.integers(0, 12, (H, W, 3)).astype(np.uint8))
             m_daun = np.zeros((H, W), np.uint8)
