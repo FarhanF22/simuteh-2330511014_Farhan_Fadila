@@ -1,78 +1,230 @@
 # SIMUTEH — Studi Praproses Citra Daun Teh
 
-## Identitas
+## 1. Identitas Proyek
 
-- Nama: Farhan Fadila
-- NIM: 2330511014
-- Seed dataset: 1014
-- Proyek: SIMUTEH
+- **Nama:** Farhan Fadila
+- **NIM:** 2330511014
+- **Proyek:** SIMUTEH
+- **SEED Dataset:** 1014
+- **Topik:** Praproses Citra Daun Teh
 
-## Tentang proyek
+## 2. Deskripsi Proyek
 
-Proyek ini mengeksplorasi praproses citra daun teh menggunakan Python, OpenCV, dan Jupyter Notebook. Rangkaian notebook B1–B5 membahas lingkungan dan alur kerja, kanal warna, histogram dan perbaikan pencahayaan, penapisan spasial, serta evaluasi rangkaian praproses.
+SIMUTEH merupakan proyek studi praproses citra daun teh menggunakan Python dan OpenCV. Proyek ini berfokus pada pengolahan citra untuk membantu memperbaiki kualitas visual daun teh sebelum dilakukan analisis lebih lanjut.
 
-Dataset yang disertakan adalah dataset **sintetis**. Dataset berisi 60 citra (20 citra untuk masing-masing kelas `sehat`, `ringan`, dan `berat`), dengan variasi kondisi cahaya dan derau. Dataset ini dibuat untuk eksperimen notebook, bukan kumpulan foto lapangan.
+Tahapan yang dipelajari meliputi pengenalan lingkungan pengembangan, pengolahan kanal warna, analisis histogram, perbaikan pencahayaan, penapisan derau, serta penerapan rangkaian praproses citra.
 
-## Struktur proyek
+Eksperimen disusun dalam lima notebook, yaitu B1 sampai B5. Setiap notebook membahas tahapan pengujian dan evaluasi yang berbeda.
+
+**Catatan:** Dataset yang digunakan merupakan dataset sintetis yang dibuat secara terprogram, bukan kumpulan foto hasil pemotretan langsung di perkebunan.
+
+## 3. Dataset
+
+Dataset sintetis dibuat menggunakan SEED 1014 dan terdiri dari 60 citra dengan pembagian:
+
+| Kelas | Jumlah Citra |
+|---|---:|
+| Sehat | 20 |
+| Ringan | 20 |
+| Berat | 20 |
+| **Total** | **60** |
+
+Dataset memiliki variasi kondisi pencahayaan dan derau untuk mendukung eksperimen pengolahan citra.
+
+Struktur dataset:
 
 ```text
-data/sintetis/
-  citra/       Citra dengan variasi pencahayaan dan derau
-  bersih/      Citra acuan sebelum gangguan pencahayaan dan derau
-  mask_daun/   Mask area daun
-  mask_bercak/ Mask area bercak
-  label.csv    Label kelas, kondisi cahaya, dan persentase bercak
-hasil/         Tabel CSV, konfigurasi JSON, grafik, dan citra hasil
-notebook/      Eksperimen B1 sampai B5
-src/           Fungsi praproses, utilitas, dan pembangkit dataset
-Laporan/       Laporan PDF dan presentasi
-requirements.txt
+data/
+└── sintetis/
+    ├── citra/
+    ├── bersih/
+    ├── mask_daun/
+    ├── mask_bercak/
+    └── label.csv
 ```
 
-## Persiapan
+Keterangan:
+- `citra/`: citra dengan variasi pencahayaan dan derau.
+- `bersih/`: citra acuan sebelum pemberian gangguan.
+- `mask_daun/`: mask area daun.
+- `mask_bercak/`: mask area bercak.
+- `label.csv`: informasi nama file, kelas, kondisi pencahayaan, dan persentase bercak.
 
-Jalankan perintah berikut dari folder utama proyek untuk memasang dependensi ke instalasi Python yang sedang digunakan:
+## 4. Struktur Folder Proyek
 
-```bash
-python -m pip install -r requirements.txt
+```text
+simuteh-2330511014_Farhan_Fadila/
+│
+├── data/
+│   └── sintetis/
+│       ├── citra/
+│       ├── bersih/
+│       ├── mask_daun/
+│       ├── mask_bercak/
+│       └── label.csv
+│
+├── hasil/
+│   ├── *.csv
+│   ├── *.json
+│   └── *.png
+│
+├── notebook/
+│   ├── B1_lingkungan.ipynb
+│   ├── B2_citra_warna.ipynb
+│   ├── B3_histogram.ipynb
+│   ├── B4_penapisan.ipynb
+│   └── B5_praproses.ipynb
+│
+├── src/
+│   ├── buat_dataset_sintetis.py
+│   ├── praproses.py
+│   └── utils_cv.py
+│
+├── Laporan/
+│   ├── Laporan_EvalP1-2330511014_Farhan_Fadila.pdf
+│   └── Slide_EvalP1-4_2330511014_Farhan_Fadila.pptx
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
-Dependensi yang tercantum meliputi OpenCV, NumPy, scikit-image, Matplotlib, pandas, dan ipykernel.
+Folder `hasil/` menyimpan keluaran eksperimen berupa tabel, grafik, konfigurasi parameter, dan visualisasi hasil pengolahan citra.
 
-## Menjalankan eksperimen
+## 5. Lingkungan Pengembangan
 
-1. Buka folder utama proyek di VS Code atau JupyterLab.
-2. Pilih kernel Jupyter yang menggunakan instalasi Python tempat dependensi di atas dipasang.
-3. Jalankan notebook di `notebook/` secara berurutan: `B1_lingkungan.ipynb`, `B2_citra_warna.ipynb`, `B3_histogram.ipynb`, `B4_penapisan.ipynb`, lalu `B5_praproses.ipynb`.
-4. Notebook menggunakan path relatif seperti `../data/sintetis/` dan `../hasil/`; jalankan notebook dengan folder kerja `notebook/` agar path tersebut ditemukan.
-5. Hasil tabel dan visualisasi disimpan di `hasil/`.
+Proyek dikembangkan menggunakan Python dan pustaka pengolahan citra serta analisis data.
 
-Dataset sintetis yang digunakan sudah disertakan. Jika ingin membuat ulang dataset dari folder utama proyek, jalankan:
+Versi perangkat lunak yang tercatat pada lingkungan Python yang diperiksa:
 
-```bash
-python src/buat_dataset_sintetis.py
+| Perangkat Lunak | Versi |
+|---|---|
+| Python | 3.11.9 |
+| OpenCV | 4.10.0.84 |
+| NumPy | 2.4.6 |
+| scikit-image | 0.24.0 |
+| Matplotlib | 3.11.2 |
+| Pandas | 2.2.3 |
+| Pillow | 13.0.0 |
+| ipykernel | 7.4.0 |
+
+Daftar dependensi utama tersedia pada file `requirements.txt`.
+
+## 6. Instalasi dan Persiapan
+
+Pastikan Python sudah terpasang pada komputer.
+
+Buka terminal atau PowerShell pada folder utama proyek, kemudian jalankan:
+
+```powershell
+py --version
 ```
 
-Skrip ini memakai seed 1014 (empat digit terakhir NIM pada konfigurasi saat ini) dan menulis dataset ke `data/sintetis/`.
+Pasang seluruh dependensi yang tercantum pada `requirements.txt` dengan perintah:
 
-## Fungsi praproses
+```powershell
+py -m pip install -r requirements.txt
+```
 
-`src/praproses.py` menyediakan `praproses(img_bgr, p=None)`. Urutan operasinya adalah:
+Setelah instalasi selesai, buka proyek menggunakan Visual Studio Code atau JupyterLab dan pilih kernel Python yang sesuai dengan lingkungan tempat dependensi dipasang.
 
-1. Ubah ukuran citra dengan lebar target.
+## 7. Menjalankan Eksperimen
+
+Notebook dikerjakan secara berurutan sebagai berikut:
+
+| Notebook | Pembahasan |
+|---|---|
+| B1 | Lingkungan pengembangan dan alur kerja |
+| B2 | Pengolahan citra warna |
+| B3 | Histogram dan perbaikan pencahayaan |
+| B4 | Penapisan dan pengurangan derau |
+| B5 | Rangkaian praproses dan evaluasi |
+
+Langkah menjalankan:
+
+1. Buka folder utama proyek.
+2. Buka folder `notebook/`.
+3. Jalankan notebook B1 sampai B5 secara berurutan.
+4. Pastikan kernel menggunakan Python yang telah dipasangi dependensi.
+5. Perhatikan hasil pengujian yang tersimpan pada folder `hasil/`.
+
+Gunakan direktori kerja yang sesuai dengan path relatif pada masing-masing notebook agar file dataset dan keluaran dapat ditemukan.
+
+## 8. Pembuatan Dataset Sintetis
+
+Dataset yang digunakan dalam eksperimen telah disertakan pada folder `data/sintetis/`.
+
+Jika ingin membangkitkan ulang dataset, jalankan skrip berikut dari folder utama proyek:
+
+```powershell
+py src/buat_dataset_sintetis.py
+```
+
+Skrip menggunakan SEED 1014 dan menghasilkan 60 citra yang dibagi ke dalam tiga kelas, yaitu sehat, ringan, dan berat.
+
+**Perhatian:** menjalankan ulang skrip akan menghasilkan ulang isi dataset sintetis. Jika ingin mempertahankan dataset yang sudah digunakan dalam eksperimen, jangan menjalankan skrip tersebut tanpa membuat salinan cadangan terlebih dahulu.
+
+## 9. Modul Praproses
+
+Modul utama praproses terdapat pada:
+
+```text
+src/praproses.py
+```
+
+Fungsi utama yang tersedia adalah:
+
+```python
+praproses(img_bgr, p=None)
+```
+
+Rangkaian operasi praproses meliputi:
+
+1. Pengubahan ukuran citra dengan lebar target.
 2. Koreksi gamma.
-3. Terapkan CLAHE pada kanal kecerahan V di ruang warna HSV, jika diaktifkan.
-4. Redam derau dengan penapis rerata, Gaussian, median, atau tanpa penapisan.
-5. Pertajam dengan unsharp masking, jika diaktifkan.
+3. Peningkatan kontras menggunakan CLAHE pada kanal kecerahan V dalam ruang warna HSV apabila diaktifkan.
+4. Pengurangan derau menggunakan penapis rerata, Gaussian, median, atau tanpa penapisan.
+5. Penajaman citra menggunakan unsharp masking apabila diaktifkan.
 
-Parameter bawaan saat ini tersedia di `PARAM_BAWAAN` pada modul tersebut. Konfigurasi hasil eksperimen yang disimpan pada `hasil/param_praproses.json` memakai lebar 640 piksel, gamma 1.0, CLAHE nonaktif, median kernel 3, dan penajaman nonaktif. Notebook dapat menguji konfigurasi lain; JSON itu mencatat parameter pipeline, bukan rangkuman seluruh eksperimen.
+Parameter bawaan disimpan pada variabel `PARAM_BAWAAN`.
 
-`src/utils_cv.py` berisi fungsi bantu untuk membaca dan menampilkan citra serta menghitung statistik dan kontras bercak.
+Konfigurasi parameter pipeline yang digunakan pada file `hasil/param_praproses.json` mencatat:
+- Lebar citra: 640 piksel.
+- Gamma: 1.0.
+- CLAHE: nonaktif.
+- Penapis: median.
+- Kernel: 3.
+- Sigma: 1.0.
+- Penajaman: nonaktif.
 
-## Artefak
+Modul pendukung lainnya adalah `src/utils_cv.py`, yang berisi fungsi bantu untuk pengolahan dan evaluasi citra.
 
-Folder `hasil/` berisi keluaran eksperimen B1–B5 dalam format CSV, JSON, dan PNG, termasuk tabel evaluasi, grafik, panel perbandingan, dan diagram pipeline. Dokumen laporan dan presentasi tersedia di `Laporan/`.
+## 10. Hasil dan Dokumentasi
 
-## Repositori
+Hasil eksperimen disimpan pada folder `hasil/` dalam beberapa format, antara lain:
 
-[GitHub — simuteh-2330511014_Farhan_Fadila](https://github.com/FarhanF22/simuteh-2330511014_Farhan_Fadila)
+- CSV untuk tabel hasil pengujian dan evaluasi.
+- PNG untuk grafik, diagram pipeline, dan visualisasi citra.
+- JSON untuk penyimpanan konfigurasi parameter praproses.
+
+Dokumentasi lengkap mengenai metode, proses pengujian, hasil, dan pembahasan tersedia dalam folder `Laporan/`.
+
+## 11. Repositori GitHub
+
+Repositori proyek:
+
+[SIMUTEH — GitHub](https://github.com/FarhanF22/simuteh-2330511014_Farhan_Fadila)
+
+Versi proyek yang diberi tag:
+
+```text
+v0.1-praproses
+```
+
+Tag tersebut menandai versi proyek praproses yang telah disimpan pada repository Git.
+
+## 12. Penutup
+
+Proyek SIMUTEH merupakan studi pengolahan dan praproses citra daun teh menggunakan dataset sintetis. Melalui lima tahapan notebook, proyek ini mengevaluasi pengaruh pengolahan warna, histogram, pencahayaan, dan penapisan terhadap kualitas citra.
+
+Seluruh hasil eksperimen, kode program, konfigurasi, serta dokumentasi disertakan dalam repository proyek agar proses pengujian dapat ditelusuri dan dijalankan kembali.
