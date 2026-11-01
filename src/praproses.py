@@ -11,7 +11,7 @@ import numpy as np
 PARAM_BAWAAN = {
     "lebar": 640,            # sampling: lebar citra kerja (piksel)
     "gamma": 1.0,            # < 1 mencerahkan, > 1 menggelapkan
-    "clahe_clip": 2.0,       # 0 berarti CLAHE tidak dipakai
+    "clahe_clip": 0.0,       # 0 berarti CLAHE tidak dipakai
     "clahe_tile": 8,
     "penapis": "median",     # "none", "rerata", "gaussian", "median"
     "kernel": 3,
