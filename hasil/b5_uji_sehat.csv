@@ -1,0 +1,6 @@
+kondisi,sd_sebelum,sd_sesudah,titik_terang_sebelum,titik_terang_sesudah,titik_terang_bila_CLAHE
+normal,11.08,5.81,5.75,0.75,10.0
+gelap,7.42,3.73,0.0,0.0,0.0
+terang,9.98,4.97,0.25,0.0,13.5
+kontras_rendah,10.25,4.35,0.0,0.0,0.0
+bayangan,12.86,9.47,4.5,3.75,4.25

@@ -1,0 +1,9 @@
+kondisi,citra,perbaikan,KB_sebelum,KB_sesudah
+gelap,teh_042.png,regang persentil 2-98,2.81,3.14
+gelap,teh_022.png,regang persentil 2-98,4.28,4.6
+terang,teh_043.png,gamma 1.8,5.71,6.3
+terang,teh_023.png,gamma 1.8,2.52,2.75
+kontras_rendah,teh_044.png,regang persentil 2-98,2.36,2.53
+kontras_rendah,teh_024.png,regang persentil 2-98,1.62,1.75
+bayangan,teh_045.png,CLAHE clip 2 tile 4,1.56,2.45
+bayangan,teh_025.png,CLAHE clip 2 tile 4,0.64,1.17

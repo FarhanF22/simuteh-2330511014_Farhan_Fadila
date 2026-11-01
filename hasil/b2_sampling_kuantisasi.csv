@@ -1,0 +1,10 @@
+eksperimen,keterangan,KB
+sampling fx=0.5,320x240,5.23
+sampling fx=0.2,128x96,4.87
+sampling fx=0.1,64x48,3.27
+sampling fx=0.05,32x24,1.3
+kuantisasi k=1,2 level,3.95
+kuantisasi k=2,4 level,4.03
+kuantisasi k=3,7 level,2.7
+kuantisasi k=4,12 level,3.66
+kuantisasi k=8,166 level,3.94
