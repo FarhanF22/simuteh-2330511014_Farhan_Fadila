@@ -6,15 +6,15 @@
 - **NIM:** 2330511014
 - **Proyek:** SIMUTEH
 - **SEED Dataset:** 1014
-- **Topik:** Praproses Citra Daun Teh
+- **Topik:** Praproses Citra dan Deteksi Tepi Daun Teh
 
 ## 2. Deskripsi Proyek
 
 SIMUTEH merupakan proyek studi praproses citra daun teh menggunakan Python dan OpenCV. Proyek ini berfokus pada pengolahan citra untuk membantu memperbaiki kualitas visual daun teh sebelum dilakukan analisis lebih lanjut.
 
-Tahapan yang dipelajari meliputi pengenalan lingkungan pengembangan, pengolahan kanal warna, analisis histogram, perbaikan pencahayaan, penapisan derau, serta penerapan rangkaian praproses citra.
+Tahapan yang dipelajari meliputi pengenalan lingkungan pengembangan, pengolahan kanal warna, analisis histogram, perbaikan pencahayaan, penapisan derau, penerapan rangkaian praproses citra, serta deteksi tepi (Sobel, Prewitt, LoG, dan Canny).
 
-Eksperimen disusun dalam lima notebook, yaitu B1 sampai B5. Setiap notebook membahas tahapan pengujian dan evaluasi yang berbeda.
+Eksperimen praproses disusun dalam lima notebook, yaitu B1 sampai B5, dan dilanjutkan dengan notebook P5 untuk deteksi tepi. Setiap notebook membahas tahapan pengujian dan evaluasi yang berbeda.
 
 **Catatan:** Dataset yang digunakan merupakan dataset sintetis yang dibuat secara terprogram, bukan kumpulan foto hasil pemotretan langsung di perkebunan.
 
@@ -73,12 +73,14 @@ simuteh-2330511014_Farhan_Fadila/
 │   ├── B2_citra_warna.ipynb
 │   ├── B3_histogram.ipynb
 │   ├── B4_penapisan.ipynb
-│   └── B5_praproses.ipynb
+│   ├── B5_praproses.ipynb
+│   └── P5_tepi.ipynb
 │
 ├── src/
 │   ├── buat_dataset_sintetis.py
 │   ├── praproses.py
-│   └── utils_cv.py
+│   ├── utils_cv.py
+│   └── utils_tepi.py
 │
 ├── Laporan/
 │   ├── Laporan_EvalP1-2330511014_Farhan_Fadila.pdf
@@ -139,12 +141,13 @@ Notebook dikerjakan secara berurutan sebagai berikut:
 | B3 | Histogram dan perbaikan pencahayaan |
 | B4 | Penapisan dan pengurangan derau |
 | B5 | Rangkaian praproses dan evaluasi |
+| P5 | Deteksi tepi: Sobel, Prewitt, LoG, Canny (Bagian 1 dan 2) |
 
 Langkah menjalankan:
 
 1. Buka folder utama proyek.
 2. Buka folder `notebook/`.
-3. Jalankan notebook B1 sampai B5 secara berurutan.
+3. Jalankan notebook B1 sampai B5, kemudian P5, secara berurutan.
 4. Pastikan kernel menggunakan Python yang telah dipasangi dependensi.
 5. Perhatikan hasil pengujian yang tersimpan pada folder `hasil/`.
 
@@ -199,7 +202,18 @@ Konfigurasi parameter pipeline yang digunakan pada file `hasil/param_praproses.j
 
 Modul pendukung lainnya adalah `src/utils_cv.py`, yang berisi fungsi bantu untuk pengolahan dan evaluasi citra.
 
-## 10. Hasil dan Dokumentasi
+## 10. Deteksi Tepi (Pertemuan 5)
+
+Notebook `notebook/P5_tepi.ipynb` memakai hasil praproses dari `hasil/param_praproses.json` dan fungsi bantu pada `src/utils_tepi.py` (antara lain `skor_tepi` untuk menghitung presisi, recall, dan F1 dengan toleransi 2 piksel).
+
+Isi notebook:
+
+- Bagian 1: gradien Sobel, perbandingan empat operator (Sobel, Prewitt, LoG, Canny) pada kanal Gray dan R, citra mentah dan hasil praproses (Tabel 6).
+- Bagian 2: eksperimen sigma dan ambang Canny (Tabel 7), ambang otomatis berbasis median dan persentil gradien, kondisi kontras rendah, serta tepi pada daun sehat.
+
+Keluaran tersimpan pada `hasil/` dengan awalan `p5_` (CSV tabel dan PNG grafik).
+
+## 11. Hasil dan Dokumentasi
 
 Hasil eksperimen disimpan pada folder `hasil/` dalam beberapa format, antara lain:
 
@@ -209,7 +223,7 @@ Hasil eksperimen disimpan pada folder `hasil/` dalam beberapa format, antara lai
 
 Dokumentasi lengkap mengenai metode, proses pengujian, hasil, dan pembahasan tersedia dalam folder `Laporan/`.
 
-## 11. Repositori GitHub
+## 12. Repositori GitHub
 
 Repositori proyek:
 
@@ -217,14 +231,15 @@ Repositori proyek:
 
 Versi proyek yang diberi tag:
 
-```text
-v0.1-praproses
-```
+| Tag | Keterangan |
+|---|---|
+| `v0.1-praproses` | Praproses citra (B1 sampai B5) |
+| `v0.2-tepi` | Deteksi tepi (P5, Bagian 1 dan 2) |
 
-Tag tersebut menandai versi proyek praproses yang telah disimpan pada repository Git.
+Tag menandai versi proyek yang telah disimpan pada repository Git.
 
-## 12. Penutup
+## 13. Penutup
 
-Proyek SIMUTEH merupakan studi pengolahan dan praproses citra daun teh menggunakan dataset sintetis. Melalui lima tahapan notebook, proyek ini mengevaluasi pengaruh pengolahan warna, histogram, pencahayaan, dan penapisan terhadap kualitas citra.
+Proyek SIMUTEH merupakan studi pengolahan dan praproses citra daun teh menggunakan dataset sintetis. Melalui lima tahapan notebook praproses dan satu notebook deteksi tepi, proyek ini mengevaluasi pengaruh pengolahan warna, histogram, pencahayaan, penapisan, dan operator tepi terhadap kualitas citra.
 
 Seluruh hasil eksperimen, kode program, konfigurasi, serta dokumentasi disertakan dalam repository proyek agar proses pengujian dapat ditelusuri dan dijalankan kembali.
