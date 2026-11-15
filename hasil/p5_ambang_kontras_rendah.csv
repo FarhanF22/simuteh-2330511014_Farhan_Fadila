@@ -1,0 +1,3 @@
+kanal,median_intensitas,lo_otomatis,hi_otomatis,grad_tepi_median,porsi_tepi>=hi_otomatis,grad_tepi_median_sigma2,grad_tepi_p90_sigma2,porsi>=90,porsi>=30
+Gray,161.625,107.75,214.5,94.125,0.0,54.75,63.25,0.0,0.982
+R,164.0,109.25,217.75,148.25,0.063,85.25,98.25,0.356,0.988
