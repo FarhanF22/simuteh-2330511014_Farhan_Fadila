@@ -88,7 +88,7 @@ simuteh-2330511014_Farhan_Fadila/
 │
 ├── requirements.txt
 ├── README.md
-└── .gitignore
+
 ```
 
 Folder `hasil/` menyimpan keluaran eksperimen berupa tabel, grafik, konfigurasi parameter, dan visualisasi hasil pengolahan citra.
